@@ -10,10 +10,10 @@ prevent_doubles: true
 pull_requests:
 
   # At least three people should sign off on any pull request.
-  quorum: 3
+  quorum: 1
 
   # Required percentage of "yes" votes (ignoring abstentions). It's a good idea to give "no" votes more power.
-  threshold: 0.66
+  threshold: 0.01
 
   # Number of hours after last action (commit or opening the pull request) before issue can be merged
   merge_delay: 48
