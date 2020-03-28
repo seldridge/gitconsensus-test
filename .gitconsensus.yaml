@@ -1,42 +1,53 @@
-# Which version of the consensus rules to use
 version: 3
-
-# Add extra labels for the vote counts and age when merging
 extra_labels: false
-
-# Don't count any vote from a user who votes for multiple options
 prevent_doubles: true
 
 pull_requests:
-
-  # At least three people should sign off on any pull request.
+  # At least this many responses must be recorded. US Senate uses 51%
+  # for quorum, then 60% to end debate and vote. We use 60% directly
+  # as there is no threshold to debate.
   quorum: 1
 
-  # Required percentage of "yes" votes (ignoring abstentions). It's a good idea to give "no" votes more power.
+  # Required percentage of "yes" votes (ignoring abstentions). It's a
+  # good idea to give "no" votes more power.
   threshold: 0.01
 
-  # Number of hours after last action (commit or opening the pull request) before issue can be merged
-  merge_delay: 24
+  # Number of hours after last action (commit or opening the pull
+  # request) before issue can be merged
+  merge_delay: 0
 
-  merge_delay_min: 1
-
-  # Number of votes at which the merge_delay gets ignored, assuming no negative votes.
+  # Number of votes at which the merge_delay gets ignored, assuming no
+  # negative votes. If the vote is unanimous, then ship-it.
   delay_override: 1
 
-  # Close pull requests that don't pass after seven days without any activity (new commits).
-  timeout: 672
+  # Immediately merge anything with unanimous approval.
+  merge_delay_min: 0
 
-  # Do not allow changes to the license.
+  # Hours before pull requests auto-close
+  timeout: -1
+
+  # If true, the license may not be changed
   license_lock: true
 
-  # Allow the consensus rules (this file) to be changed.
+  # If true, .gitconsensus.yaml may not be changed. We are allowed to
+  # change our own rules.
   consensus_lock: false
 
-  # Wait for at least four days before merging any new consensus rules.
-  consensus_delay: 48
+  # Wait this many hours before merging modifications to
+  # .gitconsensus.yaml
+  consensus_delay: 0
 
   # Allow anyone to vote on this project, even if they've never contributed.
   contributors_only: false
 
   # Don't put any restrictions on who can vote.
   collaborators_only: false
+
+  # Only the following people are allowed to vote
+  whitelist:
+    - seldridge
+    - jackkoenig
+    - azidar
+    - ducky64
+    - ucbjrl
+    - chick
